@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LogisticManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ConatactDetails">
+          <Key>
+            <PropertyRef Name="City" />
+          </Key>
+          <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Location1" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactNo1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Location2" Type="nvarchar" MaxLength="50" />
+          <Property Name="ConatactNo2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Location3" Type="nvarchar" MaxLength="50" />
+          <Property Name="ConatactNo3" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Consignment">
+          <Key>
+            <PropertyRef Name="CId" />
+          </Key>
+          <Property Name="CId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Consignment_Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Reciver_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Reciver_Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Reciver_MobileNO" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="PickupType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ConId" />
+          </Key>
+          <Property Name="ConId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CollectionOffice" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactNo." Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tracking">
+          <Key>
+            <PropertyRef Name="Bid" />
+          </Key>
+          <Property Name="Bid" Type="int" Nullable="false" />
+          <Property Name="Consignment_Procurement" Type="datetime" />
+          <Property Name="Consignment_Ready" Type="datetime" />
+          <Property Name="In_Transit" Type="datetime" />
+          <Property Name="Delivered" Type="datetime" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UId" />
+          </Key>
+          <Property Name="UId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email_ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="MobileNO" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_Consignment_ToTable">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Consignment" Type="Self.Consignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UId" />
+            </Principal>
+            <Dependent Role="Consignment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LogisticManagementModelStoreContainer">
+          <EntitySet Name="ConatactDetails" EntityType="Self.ConatactDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Consignment" EntityType="Self.Consignment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tracking" EntityType="Self.Tracking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Consignment_ToTable" Association="Self.FK_Consignment_ToTable">
+            <End Role="User" EntitySet="User" />
+            <End Role="Consignment" EntitySet="Consignment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LogisticManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Consignment">
+          <Key>
+            <PropertyRef Name="CId" />
+          </Key>
+          <Property Name="CId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Consignment_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Reciver_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Reciver_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Reciver_MobileNO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Consignment_ToTable" FromRole="Consignment" ToRole="User" />
+          <Property Name="PickupType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UId" />
+          </Key>
+          <Property Name="UId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Consignments" Relationship="Self.FK_Consignment_ToTable" FromRole="User" ToRole="Consignment" />
+        </EntityType>
+        <Association Name="FK_Consignment_ToTable">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Consignment" Type="Self.Consignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UId" />
+            </Principal>
+            <Dependent Role="Consignment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LogisticManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Consignments" EntityType="Self.Consignment" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Consignment_ToTable" Association="Self.FK_Consignment_ToTable">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Consignment" EntitySet="Consignments" />
+          </AssociationSet>
+          <EntitySet Name="Contacts" EntityType="LogisticManagementModel.Contact" />
+          <EntitySet Name="ConatactDetails" EntityType="LogisticManagementModel.ConatactDetail" />
+          <EntitySet Name="Trackings" EntityType="LogisticManagementModel.Tracking" />
+        </EntityContainer>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ConId" />
+          </Key>
+          <Property Name="ConId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CollectionOffice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ConatactDetail">
+          <Key>
+            <PropertyRef Name="City" />
+          </Key>
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ConatactNo2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ConatactNo3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Tracking">
+          <Key>
+            <PropertyRef Name="Bid" />
+          </Key>
+          <Property Name="Bid" Type="Int32" Nullable="false" />
+          <Property Name="Consignment_Procurement" Type="DateTime" Precision="3" />
+          <Property Name="Consignment_Ready" Type="DateTime" Precision="3" />
+          <Property Name="In_Transit" Type="DateTime" Precision="3" />
+          <Property Name="Delivered" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LogisticManagementModelStoreContainer" CdmEntityContainer="LogisticManagementEntities">
+          <EntitySetMapping Name="Consignments">
+            <EntityTypeMapping TypeName="LogisticManagementModel.Consignment">
+              <MappingFragment StoreEntitySet="Consignment">
+                <ScalarProperty Name="PickupType" ColumnName="PickupType" />
+                <ScalarProperty Name="CId" ColumnName="CId" />
+                <ScalarProperty Name="Consignment_Type" ColumnName="Consignment_Type" />
+                <ScalarProperty Name="Reciver_Name" ColumnName="Reciver_Name" />
+                <ScalarProperty Name="Reciver_Address" ColumnName="Reciver_Address" />
+                <ScalarProperty Name="Reciver_MobileNO" ColumnName="Reciver_MobileNO" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="LogisticManagementModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UId" ColumnName="UId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email_ID" ColumnName="Email_ID" />
+                <ScalarProperty Name="MobileNO" ColumnName="MobileNO" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="LogisticManagementModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="ContactNo_" ColumnName="ContactNo." />
+                <ScalarProperty Name="CollectionOffice" ColumnName="CollectionOffice" />
+                <ScalarProperty Name="ConId" ColumnName="ConId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConatactDetails">
+            <EntityTypeMapping TypeName="LogisticManagementModel.ConatactDetail">
+              <MappingFragment StoreEntitySet="ConatactDetails">
+                <ScalarProperty Name="ConatactNo3" ColumnName="ConatactNo3" />
+                <ScalarProperty Name="Location3" ColumnName="Location3" />
+                <ScalarProperty Name="ConatactNo2" ColumnName="ConatactNo2" />
+                <ScalarProperty Name="Location2" ColumnName="Location2" />
+                <ScalarProperty Name="ContactNo1" ColumnName="ContactNo1" />
+                <ScalarProperty Name="Location1" ColumnName="Location1" />
+                <ScalarProperty Name="City" ColumnName="City" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trackings">
+            <EntityTypeMapping TypeName="LogisticManagementModel.Tracking">
+              <MappingFragment StoreEntitySet="Tracking">
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="In_Transit" ColumnName="In_Transit" />
+                <ScalarProperty Name="Consignment_Ready" ColumnName="Consignment_Ready" />
+                <ScalarProperty Name="Consignment_Procurement" ColumnName="Consignment_Procurement" />
+                <ScalarProperty Name="Bid" ColumnName="Bid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

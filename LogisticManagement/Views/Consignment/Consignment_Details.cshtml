@@ -1,0 +1,44 @@
+﻿@model LogisticManagement.Models.Consignment
+@{
+    ViewBag.Title = "Consignment_Details";
+}
+
+<div>
+    <h2>Consignment Details</h2>
+
+    @using (Html.BeginForm("Consignment_Details", "Consignment"))
+    {
+<div>
+    <input type="hidden" value="@ViewBag.id" class="form-control" name="UserId" >
+</div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Consignment Type</label>
+            <input type="text" class="form-control" name="Consignment_Type" id="exampleFormControlInput1" placeholder="Consignment Type">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Reciver Name</label>
+            <input type="text" class="form-control" name="Reciver_Name" id="exampleFormControlInput1" placeholder="Reciver name">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Reciver Address</label>
+            <input type="text" class="form-control" name="Reciver_Address" id="exampleFormControlInput1" placeholder="Reciver Address">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Reciver Mobile NO</label>
+            <input type="text" class="form-control" name="Reciver_MobileNO" id="exampleFormControlInput1" placeholder="Reciver 10 digit mobile no">
+        </div>
+        <br />
+        <div>
+            <label for="pickup" class="form-label">Pickup Type</label>
+            <select name="PickupType" id="pickup">
+                <option value="slf drop">Self droping with confirmation slip</option>
+                <option value="company Pickup">Request company pickup</option>
+            </select>
+        </div>
+
+
+        <br />
+        <div><input class="btn btn-primary" type="submit" value="Submit"></div>
+
+    }
+</div>

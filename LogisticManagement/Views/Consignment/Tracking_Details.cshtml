@@ -1,0 +1,58 @@
+﻿@model LogisticManagement.Models.Tracking
+
+@{
+    ViewBag.Title = "Tracking_Details";
+}
+
+<h2>Tracking_Details</h2>
+
+<div>
+    <h4>Tracking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Bid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Consignment_Procurement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Consignment_Procurement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Consignment_Ready)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Consignment_Ready)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.In_Transit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.In_Transit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Delivered)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Delivered)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

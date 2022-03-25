@@ -1,0 +1,22 @@
+﻿@model LogisticManagement.Models.User
+@{
+    ViewBag.Title = "Consignment Booking";
+}
+
+<div>
+    <h2>Booking Details</h2>
+    @using (Html.BeginForm("Consignment_booking", "Consignment"))
+    {
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">User Name</label>
+            <input type="text" class="form-control" name="Name" id="exampleFormControlInput1" placeholder="Your name" value="@ViewBag.name">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+            <input type="email" class="form-control" name="Email_ID" id="exampleFormControlInput1" placeholder="Your email">
+        </div>
+        <br />
+        <div><input class="btn btn-primary" type="submit" value="Next"></div>
+        
+    }
+</div>

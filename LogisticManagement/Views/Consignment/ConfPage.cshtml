@@ -1,0 +1,29 @@
+﻿@model LogisticManagement.Models.Consignment
+@{
+    ViewBag.Title = "ConfirmationPage";
+}
+
+<h2>Confirmation Slip</h2>
+@using (Html.BeginForm("selfDownload", "Consignment"))
+{
+    <div>
+        <label for="Uniquekey" class="form-label">Booking Number :- </label>
+        <label id="uniquekey" class="form-label">@ViewBag.cid</label>
+        <input type="hidden" value="@ViewBag.cid" name="booking" />
+
+    </div>
+    <div>
+        <label for="consinment" class="form-label">Coansignment address :- </label>
+        <label id="consinment" class="form-label">@ViewBag.source</label>
+    </div>
+    <div>
+        <label for="Source" class="form-label">Source address :- </label>
+        <label id="Source" class="form-label">@ViewBag.source</label>
+    </div>
+    <div>
+        <label for="Destination" class="form-label">Destination address :- </label>
+        <label id="Destination" class="form-label">@ViewBag.destination</label>
+    </div>
+
+    <div><input class="btn btn-primary" type="submit" value="Cilck to downlod pdf"></div>
+}

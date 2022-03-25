@@ -1,0 +1,24 @@
+﻿@model LogisticManagement.Models.ConatactDetail
+@{
+    ViewBag.Title = "Contact";
+}
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("Contact_Details", "Home"))
+{
+    <label for="city"> Chose City</label>
+
+    <select name="City" id="city">
+
+
+        <option value="Jamshedpur">Jamshedpur</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Bangalore">Bangalore</option>
+        <option value="Pune">Pune</option>
+        <option value="Bhubaneswar">Bhubaneswar</option>
+
+    </select>
+    <br />
+    <div><input class="btn btn-primary" type="submit" value="Submit"></div>
+
+ }

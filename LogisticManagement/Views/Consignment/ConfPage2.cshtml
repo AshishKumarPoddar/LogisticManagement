@@ -1,0 +1,38 @@
+﻿
+@model LogisticManagement.Models.Consignment
+
+@{
+    ViewBag.Title = "ConfirmationPage";
+}
+
+<h2>Confirmation Slip</h2>
+<div>
+    @{
+        var c = 10;
+    }
+    @ViewBag.cid
+</div>
+<div>
+    <label for="Uniquekey" class="form-label">Booking Number :- </label>
+    <label id="uniquekey" class="form-label">@Model.CId</label>
+</div>
+<br />
+<div>
+    <label for="exampleFormControlInput1" class="form-label">Coansignment address :- </label>
+    <label id="exampleFormControlInput1" class="form-label">@ViewBag.source</label>
+</div>
+<br />
+<div>
+    <label for="exampleFormControlInput1" class="form-label">Source address :- </label>
+    <label id="exampleFormControlInput1" class="form-label">@ViewBag.source</label>
+</div>
+<br />
+<div>
+    <label for="exampleFormControlInput1" class="form-label">Destination address :- </label>
+    <label id="exampleFormControlInput1" class="form-label">@ViewBag.destination</label>
+</div>
+<br />
+<div>
+    <label for="exampleFormControlInput1" class="form-label">Time slot for pickup :- </label>
+    <label id="exampleFormControlInput1" class="form-label">@ViewBag.slot</label>
+</div>

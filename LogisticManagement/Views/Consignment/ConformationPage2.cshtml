@@ -1,0 +1,61 @@
+﻿@model LogisticManagement.Models.Consignment
+
+@{
+    ViewBag.Title = "ConformationPage";
+}
+
+<h2>Conformation Slip</h2>
+
+<div>
+    <h4>Consignment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label for="Uniquekey" class="form-label">Booking Number :- </label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CId)
+        </dd>
+
+        <dt>
+            <label for="consinment" class="form-label">Coansignment address :- </label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Address)
+        </dd>
+
+        <dt>
+            <label for="exampleFormControlInput1" class="form-label">Source address :- </label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Address)
+        </dd>
+
+
+        <dt>
+            <label for="Destination" class="form-label">Destination address :- </label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reciver_Address)
+        </dd>
+
+        <dt>
+            <label for="exampleFormControlInput1" class="form-label">Time slot for pickup :- </label>
+        </dt>
+
+        <dd>
+            <label id="exampleFormControlInput1" class="form-label">@ViewBag.slot</label>
+        </dd>
+        
+    </dl>
+</div>
+@using (Html.BeginForm("reciverDownload", "Consignment"))
+{
+
+    <div><input class="btn btn-primary" type="submit" value="Cilck to downlod pdf"></div>
+
+}

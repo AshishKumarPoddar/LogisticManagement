@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Tracking";
+}
+
+
+@using (Html.BeginForm("Tracking_Details", "Consignment"))
+{
+    <h2>Consignment Tracking</h2>
+    <div>
+        <label for="Uniquekey" class="form-label">Enter Booking Number :- </label>
+        <input type="number" class="form-control" id="Uniquekey" name ="Bid"  placeholder="Your booking id">
+    </div>
+ 
+    <br />
+    <div>
+        <button type="submit" class="btn btn-primary">Next</button>
+    </div>
+}
